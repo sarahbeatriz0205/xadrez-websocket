@@ -1,6 +1,6 @@
 import { tabuleiro, renderizarTabuleiro } from './index.js'
 
-var socket = new WebSocket("ws://localhost:5555/");
+var socket = new WebSocket("ws://10.25.1.101:5555/");
 
 socket.onmessage = mensagemConfirmacao;
 

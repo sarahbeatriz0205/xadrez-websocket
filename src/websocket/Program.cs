@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json.Nodes;
 
 var listener = new HttpListener();
-listener.Prefixes.Add("http://localhost:5555/"); // escutando nessa porta
+listener.Prefixes.Add("http://+:5555/"); // escutando nessa porta
 listener.Start();
 Console.WriteLine("=== Servidor WebSocket rodando na porta 5555 ===");
 Console.WriteLine("Lib que está sendo usada: System.Net.Websockets");
@@ -26,9 +26,9 @@ while (true)
         {
             var buffer = new byte[1024*4];
             // verifica se a conexao ainda ta aberta
+            Console.WriteLine($"Cliente de número: {clienteId} entrou para jogar!");
             while (webSocket.State == WebSocketState.Open)
             {
-                Console.WriteLine($"Cliente de número: {clienteId} entrou para jogar!");
                 var envioCliente = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
                 if (envioCliente.MessageType == WebSocketMessageType.Text)
                 {
